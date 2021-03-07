@@ -10,7 +10,7 @@ import styles from "./styles"
 
 const WellBeingBuddy = (props) => {
     const { classes } = props;
-    const [messages, setMessages] = useState(["Hello, I'm Wellbeing Bot! :)"])
+    const [messages, setMessages] = useState(["Hello, I'm Well-being Buddy! :)"])
     const [initLoad, setInitLoad] = useState(false)
     const user = useContext(AuthContext);
 

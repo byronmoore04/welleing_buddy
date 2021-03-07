@@ -6,6 +6,7 @@ import MoodDialog from "./MoodDialog/moodDialog"
 import HealthDialog from "./HealthDialog/healthDialog"
 import ProfileDialog from "./ProfileDialog/profileDialog"
 import { AuthContext } from "components/AuthProvider/authProvider";
+import * as Profile from "api/profile"
 import styles from "./styles"
 
 const Nav = (props) => {
@@ -15,7 +16,17 @@ const Nav = (props) => {
     const [openProfileDialog, setOpenProfileDialog] = useState(false);
     const [openMoodDialog, setOpenMoodDialog] = useState(false);
     const [openHealthDialog, setOpenHealthDialog] = useState(false);
+    const [name, setName] = useState("")
 
+    useEffect(() => {
+        fetchProfile();
+    }, [])
+
+    const fetchProfile = async () => {
+        let profile = await Profile.getProfile(user.userState.uid);
+        setName(profile.name)
+      }
+    
 
     // Opens and closes dialog for adding mood
     const openMoodDialogPopup = () => {
@@ -33,6 +44,7 @@ const Nav = (props) => {
     
     const closeProfileDialogPopup = () => {
         setOpenProfileDialog(false);
+        fetchProfile();
     }
 
     
@@ -61,7 +73,7 @@ const Nav = (props) => {
             />
             <div className={classes.header}>
                 <Typography className={classes.title}>Welcome,</Typography>
-                <Typography className={classes.titleName}>{user.userState.displayName}</Typography>
+                <Typography className={classes.titleName}>{name}</Typography>
                 
             </div>
             <div className={classes.btnDiv}>

@@ -1,10 +1,11 @@
 import firebase, { database } from "../firebase/firebase"
 
 
-const addProfile = (user, gender, age) => {
+const addProfile = (user, gender, age, name) => {
     database.ref('users/' + user + '/profile').set({
         gender: gender,
-        age: age
+        age: age,
+        name: name
     })
 }
 

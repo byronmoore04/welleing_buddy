@@ -11,6 +11,7 @@ function ProfileDialog(props) {
   const { onClose,  open } = props;
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
+  const [name, setName] = useState("")
   const user = useContext(AuthContext);
 
   const handleClose = () => {
@@ -26,11 +27,12 @@ function ProfileDialog(props) {
     console.log(profile)
     setAge(profile.age)
     setGender(profile.gender)
+    setName(profile.name)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    Profile.addProfile(user.userState.uid, age, gender);
+    Profile.addProfile(user.userState.uid, age, gender, name);
     onClose();
   };
 
@@ -49,6 +51,12 @@ function ProfileDialog(props) {
       <Typography className={classes.subTitle}>User: {user.userState.displayName}</Typography>
       <Typography className={classes.subTitle}>Email: {user.userState.email}</Typography>
         <form className={classes.form} noValidate autoComplete="off" onSubmit={handleSubmit}>
+            <TextField 
+                label="Your First Name"
+                variant="outlined"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+            />
             <TextField 
                 label="Age"
                 variant="outlined"

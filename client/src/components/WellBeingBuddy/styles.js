@@ -1,3 +1,4 @@
+import robot from "assets/robot.png"
 
 const styles = (theme) => ({ 
     root: {
@@ -20,10 +21,13 @@ const styles = (theme) => ({
         textAlign: 'center'
     },
     circle: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         backgroundColor: theme.palette.accent.light,
-        borderRadius: 100
+        backgroundImage: 'url(' + robot + ')',
+        borderRadius: "50%",
+        backgroundSize: "cover",
+        backgroundPosition: 'center',
     },
     messageContainer: {
         height: "50%",
