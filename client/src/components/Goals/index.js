@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { withStyles } from "@material-ui/core/styles";
-import { Typography, Accordion, AccordionSummary, FormControlLabel, AccordionDetails, ButtonBase } from "@material-ui/core"
+import { Typography, FormControlLabel } from "@material-ui/core";
 
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 

@@ -1,9 +1,9 @@
-const callExpressAPI = () => {
-    console.log("in client express.js")
-    return fetch('/api/getData')
+
+
+const callExpressAPI = async (str) => {
+    return await fetch('/api/getData?str=' + str)
     .then(res => res.json())
     .then(data => {
-        console.log(data)
         return data;
     })
 }

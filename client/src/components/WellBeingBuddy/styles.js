@@ -31,10 +31,52 @@ const styles = (theme) => ({
         border: "1px solid",
         borderColor: theme.palette.text.main,
         borderRadius: 25,
-        padding: 15
+        padding: 15,
+        display: 'flex',
+        flexDirection: "column",
+        alignItems: 'center',
+        justifyContent: 'space-between'
     },
-    message: {
+    messContInner: {
+        display: 'flex',
+        flexDirection: "column",
+        alignItems: 'center',
+        width: "100%"
+    },
+    messageItem: {
+        width: "100%",
+        display: 'flex',
+        flexDirection: "row",
+        alignItems: 'center',
+        marginTop: 15,
+        padding: 5,
+        backgroundColor: theme.palette.secondary.main,
+        borderRadius: 25
+    },
+    messageText: {
+        color: theme.palette.text.main,
+        fontSize: 14
+    },
+    mesIcon: {
+        height: 25,
+        width: 25,
+        margin: 5,
         color: theme.palette.text.main
-    }
+    },
+    signOutBtn: {
+        border: "1px solid",
+        borderColor: theme.palette.text.main,
+        borderRadius: 25,
+        width: "80%",
+        padding: "10px 0px",
+        marginBottom: 15,
+        transition: "all .2s ease-in-out",
+        "&:hover": {
+          transform: "scale(1.05)"
+        }
+    },
+    signOutText:{
+        color: theme.palette.text.main
+    },
 })
 export default styles;

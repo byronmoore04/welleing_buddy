@@ -1,25 +1,45 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Button, Paper } from "@material-ui/core"
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import { AuthContext } from "components/AuthProvider/authProvider"
 import * as Express from "api/express"
+import * as Health from "api/healthForm"
 import styles from "./styles"
 
 const WellBeingBuddy = (props) => {
     const { classes } = props;
-    const [exp, setExp] = useState("false")
+    const [messages, setMessages] = useState(["Hello, I'm Wellbeing Bot! :)"])
+    const [initLoad, setInitLoad] = useState(false)
     const user = useContext(AuthContext);
 
     useEffect(() => {
-        console.log("in useEffect")
-        apiCall()
+        if (initLoad === false) {
+            setInitLoad(true)
+            doWork()
+        }
     }, [])
 
-    const apiCall = async () => {
-        let res = await Express.callExpressAPI()
-        setExp(res.message);
-       // console.log(variable)
+    const doWork = () => {
+        healthCall().
+        then((res) => {
+            setTimeout(() => {
+                apiCall(res)
+            }, 2000)
+        })
+    }
+
+    const healthCall = async () => {
+        let res = await Health.getHealthForm(user.userState.uid)
+        let stringVar = res[0].key + "," + res[1].key + "," + res[2].key + "," + res[3].key + "," + res[4].key
+        return stringVar
+    }
+
+    const apiCall = async (str) => {
+        console.log(str)
+        let res = await Express.callExpressAPI(str)
+        setMessages(messages => [...messages, res])
     }
    
     return (
@@ -27,7 +47,19 @@ const WellBeingBuddy = (props) => {
             <Typography className={classes.title}>Meet Well-being Buddy!</Typography>
             <div className={classes.circle} />
             <div className={classes.messageContainer}>
-                <Typography className={classes.message}>Chad: {exp}</Typography>
+                <div className={classes.messContInner}>
+                    {messages.map((message, index) =>   
+                        <div className={classes.messageItem} key={message.index}>
+                            <AccountCircleIcon className={classes.mesIcon} />
+                            <Typography className={classes.messageText}>{message}</Typography>
+                        </div>
+                    )}
+                </div>
+                <Button className={classes.signOutBtn} onClick={() => doWork()}>
+                    <Typography className={classes.signOutText}>
+                        Assistance
+                    </Typography>
+                </Button>
             </div>
         </div>
     )
