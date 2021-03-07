@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Button, Paper } from "@material-ui/core"
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 import { AuthContext } from "components/AuthProvider/authProvider"
 import * as Express from "api/express"
@@ -50,7 +49,7 @@ const WellBeingBuddy = (props) => {
                 <div className={classes.messContInner}>
                     {messages.map((message, index) =>   
                         <div className={classes.messageItem} key={message.index}>
-                            <AccountCircleIcon className={classes.mesIcon} />
+                            <div className={classes.mesIcon} />
                             <Typography className={classes.messageText}>{message}</Typography>
                         </div>
                     )}

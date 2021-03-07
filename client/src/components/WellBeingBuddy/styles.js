@@ -65,7 +65,12 @@ const styles = (theme) => ({
         height: 25,
         width: 25,
         margin: 5,
-        color: theme.palette.text.main
+        backgroundColor: theme.palette.accent.light,
+        color: theme.palette.text.main,
+        backgroundImage: 'url(' + robot + ')',
+        borderRadius: "50%",
+        backgroundSize: "cover",
+        backgroundPosition: 'center',
     },
     signOutBtn: {
         border: "1px solid",
